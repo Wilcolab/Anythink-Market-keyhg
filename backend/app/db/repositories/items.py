@@ -103,6 +103,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
     async def filter_items(  # noqa: WPS211
         self,
         *,
+        title: Optional[str] = None,
         tag: Optional[str] = None,
         seller: Optional[str] = None,
         favorited: Optional[str] = None,
@@ -128,7 +129,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             Query.from_(
                 users,
             ).where(
-                users.id == items.seller_id,
+                users.id == items.seller_id, title == items.title,
             ).select(
                 users.username,
             ).as_(
