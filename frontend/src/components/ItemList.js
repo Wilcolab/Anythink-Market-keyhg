@@ -3,6 +3,14 @@ import ListPagination from "./ListPagination";
 import React from "react";
 
 const ItemList = (props) => {
+  if (props.title && props.title.length > 2 && props.items.length === 0) {
+    return (
+      <div id="empty">
+        <span>No items found for "{props.title}"</span>
+      </div>
+    );
+  }
+
   if (!props.items) {
     return <div className="py-4">Loading...</div>;
   }
