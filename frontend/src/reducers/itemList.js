@@ -90,7 +90,7 @@ const reducer = (state = {}, action) => {
         tab: null,
         title: action.title,
         currentPage: 0,
-      };      
+      };
     default:
       return state;
   }

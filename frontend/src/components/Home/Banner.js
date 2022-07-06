@@ -21,9 +21,15 @@ const Banner = (props) => {
         <img src={logo} alt="banner" />
         <div>
           <span id="get-part">A place to get</span>
-          <input id="search-box" className="rounded-pill m-2 pt-2 pb-2 pl-3 pr-3 w-50" placeholder="What is it that you truly desire?" type="text" onChange={handleChange}></input>
+          <input
+            id="search-box"
+            className="rounded-pill m-2 pt-2 pb-2 pl-3 pr-3 w-50"
+            placeholder="What is it that you truly desire?"
+            type="text"
+            onChange={handleChange}
+          ></input>
           <i className="ion-search"></i>
-          <span> the cool stuff.</span>          
+          <span> the cool stuff.</span>
         </div>
       </div>
     </div>
