@@ -103,6 +103,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
     async def filter_items(  # noqa: WPS211
         self,
         *,
+        title: Optional[str] = None,
         tag: Optional[str] = None,
         seller: Optional[str] = None,
         favorited: Optional[str] = None,
@@ -135,6 +136,11 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
                 SELLER_USERNAME_ALIAS,
             ),
         )
+
+        if title:
+            query = query.where(
+                items.title.like('%'+title+'%')
+            )
         # fmt: on
 
         if tag:
