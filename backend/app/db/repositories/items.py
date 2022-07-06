@@ -129,13 +129,18 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             Query.from_(
                 users,
             ).where(
-                users.id == items.seller_id and (not title or (title in items.title)),
+                users.id == items.seller_id,
             ).select(
                 users.username,
             ).as_(
                 SELLER_USERNAME_ALIAS,
             ),
         )
+
+        if title:
+            query = query.where(
+                items.title.like(title)
+            )
         # fmt: on
 
         if tag:
