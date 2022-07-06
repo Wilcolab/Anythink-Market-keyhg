@@ -70,31 +70,39 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
-  return (
-    <div>
-      <div className="feed-toggle">
-        <ul className="nav nav-tabs">
-          <YourFeedTab
-            token={props.token}
-            tab={props.tab}
-            onTabClick={props.onTabClick}
-          />
+  if (!props.title || props.itemsCount > 0) {
+    return (
+      <div>
+        <div className="feed-toggle">
+          <ul className="nav nav-tabs">
+            <YourFeedTab
+              token={props.token}
+              tab={props.tab}
+              onTabClick={props.onTabClick}
+            />
 
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+            <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
 
-          <TagFilterTab tag={props.tag} />
-        </ul>
+            <TagFilterTab tag={props.tag} />
+          </ul>
+        </div>
+
+        <ItemList
+          pager={props.pager}
+          items={props.items}
+          loading={props.loading}
+          itemsCount={props.itemsCount}
+          currentPage={props.currentPage}
+        />
       </div>
-
-      <ItemList
-        pager={props.pager}
-        items={props.items}
-        loading={props.loading}
-        itemsCount={props.itemsCount}
-        currentPage={props.currentPage}
-      />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div>
+        <span id="empty">No items found for "{props.title}"</span>
+      </div>
+    )
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainView);
