@@ -139,7 +139,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
 
         if title:
             query = query.where(
-                items.title.like(title)
+                items.title.like('%'+title+'%')
             )
         # fmt: on
 
