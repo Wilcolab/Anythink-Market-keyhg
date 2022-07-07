@@ -26,7 +26,7 @@ const Banner = (props) => {
             className="rounded-pill m-2 pt-2 pb-2 pl-3 pr-3 w-50"
             placeholder="What is it that you truly desire?"
             type="text"
-            onChange={handleChange}
+            onInput={handleChange}
           ></input>
           <i className="ion-search"></i>
           <span> the cool stuff.</span>
