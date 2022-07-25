@@ -8,7 +8,6 @@ const API_ROOT =
     ? "http://localhost:3000/api"
     : "https://anythink-market-keyhg-api.herokuapp.com";
 
-
 const encode = encodeURIComponent;
 const responseBody = (res) => res.body;
 
