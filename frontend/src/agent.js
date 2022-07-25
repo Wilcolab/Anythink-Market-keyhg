@@ -6,7 +6,7 @@ const superagent = superagentPromise(_superagent, global.Promise);
 const API_ROOT =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3000/api"
-    : "https://anythink-market-keyhg-api.herokuapp.com";
+    : process.env.REACT_APP_ENGINE_URL;
 
 const encode = encodeURIComponent;
 const responseBody = (res) => res.body;
