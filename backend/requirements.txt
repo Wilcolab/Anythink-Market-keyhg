@@ -1,3 +1,4 @@
+Warning: The lock file is not up to date with the latest changes in pyproject.toml. You may be getting outdated dependencies. Run update to update them.
 aiosql==3.3.1
 alembic==1.7.6
 anyio==3.5.0
