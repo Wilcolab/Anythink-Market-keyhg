@@ -202,11 +202,38 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         )
         query_params.extend([limit, offset])
 
-        items_rows = await self.connection.fetch(query.get_sql(), *query_params)
+        result_rows = await self.connection.fetch(query.get_sql(), *query_params)
 
         return [
-            await self.get_item_by_slug(slug=item_row['slug'], requested_user=requested_user)
-            for item_row in items_rows
+            Item(
+                id_=item_row["id"],
+                slug=item_row["slug"],
+                title=item_row["title"],
+                description=item_row["description"],
+                body=item_row["body"],
+                image=item_row["image"],
+                seller=await self._profiles_repo.get_profile_by_username(
+                    username=item_row[SELLER_USERNAME_ALIAS],
+                    requested_user=requested_user,
+                ),
+                tags=await self.get_tags_for_item_by_slug(slug=item_row["slug"])
+                if tag
+                else [],
+                favorites_count=await self.get_favorites_count_for_item_by_slug(
+                    slug=item_row["slug"],
+                )
+                if favorited
+                else 0,
+                favorited=await self.is_item_favorited_by_user(
+                    slug=item_row["slug"],
+                    user=requested_user,
+                )
+                if requested_user
+                else False,
+                created_at=item_row["created_at"],
+                updated_at=item_row["updated_at"],
+            )
+            for item_row in result_rows
         ]
 
     async def get_items_for_user_feed(
