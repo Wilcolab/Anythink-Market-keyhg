@@ -47,9 +47,9 @@ ItemSchema.methods.updateFavoriteCount = function() {
 ItemSchema.methods.toJSONFor = function(user) {
   return {
     slug: this.slug,
-    title: this.title || 'https://www.midimusicadventures.com/wp-content/uploads/2015/07/SQ5CDFrontCover-300x300.jpg',
+    title: this.title,
     description: this.description,
-    image: this.image,
+    image: this.image || 'https://www.midimusicadventures.com/wp-content/uploads/2015/07/SQ5CDFrontCover-300x300.jpg',
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,
     tagList: this.tagList,
