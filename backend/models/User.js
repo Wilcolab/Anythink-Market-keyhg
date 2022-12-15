@@ -24,6 +24,7 @@ var UserSchema = new mongoose.Schema(
     },
     bio: String,
     image: String,
+    isVerified: Boolean,
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -75,7 +76,8 @@ UserSchema.methods.toAuthJSON = function() {
     token: this.generateJWT(),
     bio: this.bio,
     image: this.image,
-    role: this.role
+    role: this.role,
+    isVerified: this.isVerified,
   };
 };
 
