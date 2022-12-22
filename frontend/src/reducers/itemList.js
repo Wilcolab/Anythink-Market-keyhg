@@ -2,6 +2,7 @@ import {
   ITEM_FAVORITED,
   ITEM_UNFAVORITED,
   SET_PAGE,
+  APPLY_SEARCH_FILTER,
   APPLY_TAG_FILTER,
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
@@ -36,6 +37,17 @@ const reducer = (state = {}, action) => {
         itemsCount: action.payload.itemsCount,
         currentPage: action.page,
       };
+    case APPLY_SEARCH_FILTER:
+        return {
+          ...state,
+          pager: 0,
+          items: action.payload.items,
+          itemsCount: action.payload.itemsCount,
+          tab: null,
+          tag: '',
+          currentPage: 0,
+          search: action.search,
+        };      
     case APPLY_TAG_FILTER:
       return {
         ...state,
@@ -45,6 +57,7 @@ const reducer = (state = {}, action) => {
         tab: null,
         tag: action.tag,
         currentPage: 0,
+        search: '',
       };
     case HOME_PAGE_LOADED:
       return {
@@ -55,6 +68,7 @@ const reducer = (state = {}, action) => {
         itemsCount: action.payload[1].itemsCount,
         currentPage: 0,
         tab: action.tab,
+        search: '',
       };
     case HOME_PAGE_UNLOADED:
       return {};
@@ -67,6 +81,7 @@ const reducer = (state = {}, action) => {
         tab: action.tab,
         currentPage: 0,
         tag: null,
+        search: '',
       };
     case PROFILE_PAGE_LOADED:
     case PROFILE_FAVORITES_PAGE_LOADED:
