@@ -9,8 +9,9 @@ const Banner = (props) => {
         <img src={logo} alt="banner" />
         <div>
           <span>A place to </span>
-          <span id="get-part">get</span>
-          <input
+          <span id="get-part" onClick={() => {document.getElementById("search-box").style.display = "inline";}}>get</span>
+           <input
+                      style={{display: 'none'}}
                       id="search-box"
                       type="text"
                       placeholder="What is that your truely desire?"
