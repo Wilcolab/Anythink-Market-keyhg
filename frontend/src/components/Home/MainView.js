@@ -85,14 +85,14 @@ const MainView = (props) => {
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-
+{!props.search || (props.items && props.items.length > 0) ?
       <ItemList
         pager={props.pager}
         items={props.items}
         loading={props.loading}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
-      />
+      /> : <p id='empty'>Nothing to show</p>}
     </div>
   );
 };
