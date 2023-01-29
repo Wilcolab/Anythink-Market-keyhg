@@ -12,7 +12,7 @@ const ItemList = (props) => {
   }
 
   return (
-    <div className="container py-2">
+    <div className="container py-2 mt-2">
       <div className="row">
         {props.items.map((item) => {
           return (
