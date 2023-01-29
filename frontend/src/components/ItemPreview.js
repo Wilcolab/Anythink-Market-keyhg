@@ -32,7 +32,7 @@ const ItemPreview = (props) => {
   return (
     <div
       className="card bg-dark border-light p-3"
-      style={{ borderRadius: "20px" }}
+      style={{ borderRadius: "20px", height:"100%" }}
       id={`item_${item.slug}`}
     >
       <img
